@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+  <div class="card_grid">
+    {% for i in posts %}
+   <div class="card_ card-1" style="background: url('/media/{{i.user.username}}/{{ i.cover }}'); background-size: cover;">
+       <div class="card_face">
+         <div class="cover_side">
+           <div class="flexbox">
+             <div class="item">
+               <label style='font-size: 20px; font-family: "Lilita One"; margin:0; padding: 0;'>
+                 R{{ i.price }}
+               </label>
+               <label style='font-size: 13px; font-family: "Montserrat"; margin:0;  padding: 0;'>
+                 {% if i.gender == 'Male' %}
+                 <i class="fas stand_out fa-mars" style='font-size: 20px;'></i>
+                 {% elif i.gender == 'Female' %}
+                 <i class="fas stand_out fa-venus" style='font-size: 20px;'></i>
+                 {% elif i.gender == 'Mixed' %}
+                 <i class="fas stand_out fa-venus-mars" style='font-size: 20px;'></i>
+                 {% endif %}
+               </label>
+               <label style='font-size: 13px; font-family: "Montserrat"; margin:0;  padding: 0;'>
+                 {% if i.type == 'Single' %}
+                 <i class="fas stand_out fa-male" style='font-size: 20px;'></i>
+                 {% elif i.type == 'Shared' %}
+                 <i class="fas stand_out fa-male" style='font-size: 20px;'></i>
+                 <i class="fas stand_out fa-male" style='font-size: 20px;'></i>
+                 {% endif %}
+               </label>
+
+               <br>
+
+               <label style='font-size: 13px; font-family: "Montserrat"; margin:0;  padding: 0; color:#ffbb0b;'>
+                 {{ i.province }}
+               </label>
+             </div>
+           </div>
+
+         </div>
+         <div class="text_side">
+
+           <div class="text_title" style='font-size: 20px; font-family: "Lilita One"; margin:0; padding: 0; color: #ffbb0b'>
+             <small>{{ i.title }}</small>
+           </div>
+
+           <div class="feature-section">
+             {% if i.wifi == True %}<i title='Wifi included' class="fas fa-wifi" style="color:#ffbb0b"></i>{% else %}<i title='Wifi not included' class="fas fa-wifi" style="color:crimson"></i>{% endif %}
+
+             {% if i.electricity == True %}<i title='Electricity included' class="fas fa-bolt" style="color:#ffbb0b"></i>{% else %}<i title='Electricity not included' class="fas fa-bolt" style="color:crimson"></i>{% endif %}
+
+             {% if i.shuttle == True %}<i title='Shuttle service included' class="fas fa-bus-alt" style="color:#ffbb0b"></i>{% else %}<i title='Shuttle service not included' class="fas fa-bus-alt" style="color:crimson"></i>{% endif %}
+
+             {% if i.furnished == True %}<i title='Accom furnished' class="fas fa-chair" style="color:#ffbb0b"></i>{% else %}<i title='Accom not furnished' class="fas fa-chair" style="color:crimson"></i>{% endif %}
+           </div>
+
+           <div class="button-section">
+             <a class="btn btn-sm btn-warning" href="/post/{{i.slug}}" role="button">
+               View
+             </a>
+           </div>
+
+           <div class="paragraph">
+             <label style='font-size: 13px; font-family: "Montserrat"; margin:0;  padding: 0;'>
+              {{i.description}}
+             </label>
+           </div>
+
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
+
+{% endblock content %}
