@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import CustomUser as User
+from .models import CustomUser as User, Profile
 from django.contrib.auth import (login as auth_login,  authenticate, logout as _logout)
 from django.contrib import auth
 
@@ -8,35 +8,14 @@ def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
             try:
-                user = User.objects.get(email=request.POST['email'])
-                if request.user.is_authenticated:
-                    pass
+                user =Level_One User.objects.get(email=request.POST['email'])
                 return redirect('home')
-            except User.DoesNotExist:
-                user = User.objects.create_user(email=request.POST['email'], password=request.POST['password1'])
+            except user.DoesNotExist:
+                user = User.objects.create_user(email=request.POST['email'], password=request.POST['password1'], name=request.POST['name'], surname=request.POST['surname'])
                 auth_login(request, user)
-                user_id = User.objects.get(email=request.POST['email']).id
-
-                profile = Level_One.objects.get(user=user_id)
-                profile.first_name = request.POST['name']
-                profile.last_name = request.POST['surname']
-                profile.save()
-
-                context = {
-                    'first_name':Level_One.objects.get(user=user),
-                    'error':'middle'
-                }
-            if request.user.is_authenticated:
-                context['profile'] = Level_One.objects.get(user=request.user)
-
             return redirect('home')
     else:
-        context = {
-            'first_name':Level_One.objects.get(user=user),
-            'error':'end'
-        }
-        if request.user.is_authenticated:
-            context['profile'] = Level_One.objects.get(user=request.user)
+        pass
     return redirect('home')
 
 
