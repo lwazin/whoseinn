@@ -8,7 +8,7 @@ def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
             try:
-                user = User.objects.get(email=request.POST['email'])
+                user = User.objects.filter(email=request.POST['email'])
                 return redirect('home')
             except user.DoesNotExist:
                 user = User.objects.create_user(email=request.POST['email'], password=request.POST['password1'], name=request.POST['name'], surname=request.POST['surname'])
