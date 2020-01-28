@@ -12,7 +12,7 @@ SECRET_KEY = 'go%80172h_@o0$jd994y5$@u5ci)iykfm!f6bbwwiy4i11d$8*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['109.74.194.128', 'www.whoseinn.com', 'whoseinn.com']
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
