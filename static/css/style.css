@@ -493,3 +493,39 @@ h2 a {
 .collapse_contain{
   width: 90%;
 }
+
+
+.collap{
+  border-radius: 5px;
+  border: solid 1px #ffbb0b;
+  background-color: #212121
+}
+.collap button{
+  color: #ffbb0b;
+  text-decoration: none;
+  align-content: center;
+}
+.collap button:hover{
+  color: #ff8b0b;
+  text-decoration: none;
+}
+.canv{
+  background-color: transparent;
+  border: 0px
+}
+
+.img_grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  width: 690px;
+  grid-gap: 5px;
+  margin-top: 5px;
+}
+.img_cont{
+  width: 100%;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
