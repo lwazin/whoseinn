@@ -1,0 +1,488 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+  <head>
+
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6fZNvP44x4iXmaKZAkIg5H5lM5IxjWYk&libraries=places"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css" integrity="sha256-PtBWX+v2TI0iuYI3rZrQft5kfd3ZkdPd8iVMZoE1rxE=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block css %}{% endblock %}
+
+  </head>
+  <body>
+    <!-- Accounts -->
+    <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+
+
+
+    <ul id="codes" class="nav nav-fill nav-info mb-2" role="tablist">
+      <li role="presentation" class="nav-item nav-info">
+        <a
+          class="nav-link mr-2"
+          href="#login"
+          aria-controls="home"
+          role="tab"
+          data-toggle="tab"
+          >Login</a
+        >
+      </li>
+      <li role="presentation" class="nav-item">
+        <a
+          class="nav-link"
+          href="#signup"
+          aria-controls="profile"
+          role="tab"
+          data-toggle="tab"
+          >Sign Up!</a
+        >
+      </li>
+    </ul>
+
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="login">
+
+
+        <form method='post' action="{% url 'login' %}">
+          {% csrf_token %}
+
+          <div class="input-group mb-2">
+            <input type="email" class="form-control" name="email" id="_Email" placeholder="Email..">
+          </div>
+
+          <div class="input-group mb-2">
+
+            <input type="password" class="form-control" name="password" id="_Password" placeholder="Password..">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit" >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+
+    </form>
+
+
+
+    </div>
+        <div role="tabpanel" class="tab-pane" id="signup">
+
+          <form method='post' action="{% url 'signup' %}">
+            {% csrf_token %}
+
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" name="name" placeholder="First Name.." aria-describedby="btnGroupAddon">
+
+              <input type="text" class="form-control" name="surname" placeholder="Last Name.." aria-describedby="btnGroupAddon">
+            </div>
+
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" name="username" placeholder="Userame.." aria-describedby="btnGroupAddon">
+            </div>
+
+            <div class="input-group mb-2">
+
+              <input type="email" name="email" class="form-control" id="_Email" placeholder="Email..">
+            </div>
+
+            <div class="input-group mb-2">
+
+              <input type="password" name="password1" class="form-control" placeholder="Password..">
+            </div>
+
+            <div class="input-group mb-2">
+
+              <input type="password" name="password2" class="form-control" id="_Password" placeholder="Confirmation">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" value="">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+
+      </form>
+
+        </div>
+      </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create -->
+    <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="create">
+                <form method="post" action="{% url 'create' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+
+                  <div class="input-group mb-2">
+                    <input type="text" class="form-control" name="title" placeholder="Accom Title" aria-describedby="btnGroupAddon">
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <textarea maxlength="140" rows="2" class="form-control" name="description" placeholder="Accom Description (140 limit)" aria-describedby="btnGroupAddon"></textarea>
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <input type="text" id="address" class="form-control" name="address" placeholder="Address.." aria-describedby="btnGroupAddon">
+                  </div>
+
+
+                  <div class="input-group mb-2">
+                    <input type="number" class="form-control" name="price" placeholder="Room Price.." aria-describedby="btnGroupAddon">
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <select name="gender" class="custom-select" id="inputGroupSelect01">
+                      <option selected>Prefered Gender</option>
+                      <option value="Mixed">Mixed</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+
+                    <select name="type" class="custom-select" id="inputGroupSelect01">
+                      <option selected>Room Type..</option>
+                      <option value="Single">Single</option>
+                      <option value="Shared">Shared</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group mb-2 feature_buttons">
+                    <small style="text-align:center; color:#e2e2e2">Features..</small>
+
+
+                    <button type="button" class="btn btn-dark toggle  btn-block" data-toggle="button" title="Wifi" value='False' aria-pressed="false" onclick="if(getElementById('wifi').value == 'false'){getElementById('wifi').value = 'true'}else{getElementById('wifi').value = 'false'}">
+
+                      <input type="hidden" name='wifi' class="form-control" id="wifi" value="false"/>
+
+                      <i class="fas fa-wifi">
+                      </i>
+
+                    </button>
+                    <button type="button" class="btn btn-dark toggle  btn-block" data-toggle="button" title="Prepaid Electricity" aria-pressed="false" onclick="if(getElementById('electricity').value == 'false'){getElementById('electricity').value = 'true'}else{getElementById('electricity').value = 'false'}">
+
+                      <input type="hidden" name='electricity' class="form-control" id="electricity" value="false"/>
+
+                      <i class="fas fa-bolt">
+                      </i>
+
+                    </button>
+                    <button type="button" class="btn btn-dark toggle  btn-block" data-toggle="button"  title="Shuttle Service" aria-pressed="false" onclick="if(getElementById('shuttle').value == 'false'){getElementById('shuttle').value = 'true'}else{getElementById('shuttle').value = 'false'}">
+
+                      <input type="hidden" name='shuttle' class="form-control" id="shuttle" value="false"/>
+
+                      <i class="fas fa-bus-alt">
+                      </i>
+
+                    </button>
+                    <button type="button" class="btn btn-dark toggle  btn-block" data-toggle="button" title="Furnished" aria-pressed="false" onclick="if(getElementById('furnished').value == 'false'){getElementById('furnished').value = 'true'}else{getElementById('furnished').value = 'false'}">
+
+                      <input type="hidden" name="furnished" class="form-control" id="furnished" value="false"/>
+
+                      <i class="fas fa-chair">
+                      </i>
+
+                    </button>
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="related_images" multiple>
+                        <label class="custom-file-label" for="inputGroupFile04">
+                          Related Images
+                        </label>
+                      </div>
+
+                      <div class="input-group-append">
+                        <input type="submit" value='Create' class="btn btn-outline-secondary" />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Side Bar -->
+<nav class="main-menu">
+  <ul>
+    <li>
+      <div class="logo">
+        <span class="whose">
+          WHOSE
+        </span>
+        <span class="inn">
+          INN
+        </span>
+      </div>
+    </li>
+    {% if user.is_authenticated %}
+    <li class="has-subnav">
+      <a data-toggle="modal" data-target="#CreateModal">
+        <i class="fa fa-plus fa-2x shake"></i>
+        <span class="nav-text">
+          New Accom
+        </span>
+      </a>
+    </li>
+    {% endif %}
+    <li>
+      <a href="{% url 'home' %}">
+        <i class="fas fa-newspaper unknown fa-2x"></i>
+        <span class="nav-text">
+          Catalogue
+        </span>
+      </a>
+    </li>
+    <li id='search_drop'>
+
+        <a data-toggle="collapse" class='collapsed' id="search_expand" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="">
+
+          <i class="fas unknown fa-search"></i>
+          <span class="nav-text">
+            Search
+          </span>
+        </a>
+
+      <div class="collapse nav_search" aria-expanded="false" id="collapseExample">
+      <div class="collapse_contain">
+
+        <form method="post" action="{% url 'search' %}">
+          {% csrf_token %}
+
+            <input type="text" name='label_search' value='single_search' hidden>
+
+            <div class="input-group mb-2 mt-2">
+
+            <input type="search" name="search" class="form-control" placeholder="Search.." value="{{ search_term }}">
+
+            <div class="input-group-append">
+              <button class="btn btn-success" type='submit'>
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <form method="post" action="{% url 'search' %}">
+          {% csrf_token %}
+
+          <input type="text" name='label_search' value='multiple_search' hidden>
+
+          <div class="input-group mb-1">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">
+      <i class="fas fa-globe-africa"></i>
+    </label>
+  </div>
+  <select name="province_search" class="custom-select">
+    <option value="" selected>
+      All
+    </option>
+    <option value="Eastern Cape">
+      Eastern Cape
+    </option>
+    <option value="Free State">
+      Free State
+    </option>
+    <option value="Gauteng">
+      Gauteng
+    </option>
+    <option value="KwaZulu-Natal">
+      KwaZulu-Natal
+    </option>
+    <option value="Limpopo">
+      Limpopo
+    </option>
+    <option value="Mpumalanga">
+      Mpumalanga
+    </option>
+    <option value="Northern Cape">
+      Northern Cape
+    </option>
+    <option value="North West">
+      North West
+    </option>
+    <option value="Western Cape">
+      Western Cape
+    </option>
+  </select>
+</div>
+
+<div class="input-group mb-1">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">
+      <i class="fas fa-venus-mars"></i>
+    </label>
+  </div>
+  <select name="gender_search" class="custom-select">
+    <option value="" selected>
+      All
+    </option>
+    <option value="Mixed">
+      Mixed
+    </option>
+    <option value="Female">
+      Female
+    </option>
+    <option value="Male">
+      Male
+    </option>
+  </select>
+
+
+</div>
+
+<div class="input-group mb-2">
+<div class="input-group-prepend" title="">
+  <label class="input-group-text" for="inputGroupSelect01">
+    <i class="fas fa-box-open"></i>
+  </label>
+</div>
+<select name="room_search" class="custom-select">
+  <option value="" selected>
+    All
+  </option>
+  <option value="Single">
+    Single
+  </option>
+  <option value="Shared">
+    Shared
+  </option>
+</select>
+
+</div>
+
+
+
+<div class="four_grid">
+
+<button type="button" class="btn btn-sm btn-dark toggle mb-1 btn-block" data-toggle="button" title="Wifi" value='False' aria-pressed="false" onclick="if(getElementById('wifi_search').value == 'false'){getElementById('wifi_search').value = 'true'}else{getElementById('wifi_search').value = 'false'}">
+
+  <input type="hidden" name='wifi_search' class="form-control" id="wifi_search" value="false"/>
+
+  <i class="fas fa-wifi">
+  </i>
+
+</button>
+<button type="button" class="btn btn-sm btn-dark toggle mb-1 btn-block" data-toggle="button" title="Prepaid Electricity" aria-pressed="false" onclick="if(getElementById('electricity_search').value == 'false'){getElementById('electricity_search').value = 'true'}else{getElementById('electricity_search').value = 'false'}">
+
+  <input type="hidden" name='electricity_search' class="form-control" id="electricity_search" value="false"/>
+
+  <i class="fas fa-bolt">
+  </i>
+
+</button>
+<button type="button" class="btn btn-sm btn-dark toggle mb-1 btn-block" data-toggle="button"  title="Shuttle Service" aria-pressed="false" onclick="if(getElementById('shuttle_search').value == 'false'){getElementById('shuttle_search').value = 'true'}else{getElementById('shuttle_search').value = 'false'}">
+
+  <input type="hidden" name='shuttle_search' class="form-control" id="shuttle_search" value="false"/>
+
+  <i class="fas fa-bus-alt">
+  </i>
+
+</button>
+<button type="button" class="btn btn-sm btn-dark toggle mb-1 btn-block" data-toggle="button" title="Furnished" aria-pressed="false" onclick="if(getElementById('furnished_search').value == 'false'){getElementById('furnished_search').value = 'true'}else{getElementById('furnished_search').value = 'false'}">
+
+  <input type="hidden" name="furnished_search" class="form-control" id="furnished_search" value="false"/>
+
+  <i class="fas fa-chair">
+  </i>
+
+  <div class="input-group-append">
+    <button class="btn btn-success" type='submit'>
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+
+        </form>
+</div>
+</div>
+
+
+      </div>
+
+    </li>
+
+  </ul>
+
+  <ul class="logout">
+{% if user.is_authenticated %}
+<li>
+  <a data-toggle="modal" data-target="#ProfileModal">
+    <i class="fa fa-user fa-2x"></i>
+    <span class="nav-text">
+      {{ user.name }} {{ user.surname }}
+    </span>
+  </a>
+</li>
+<li>
+  <a href="javascript:{document.getElementById('logout').submit()}">
+    <i class="fas unknown fa-power-off fa-2x"></i>
+    <span class="nav-text">
+      Logout
+    </span>
+  </a>
+  <form id='logout' action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" />
+  </form>
+</li>
+{% else %}
+<li>
+  <a data-toggle="modal" data-target="#LoginModal">
+    <i class="fas unknown fa-user-secret fa-2x"></i>
+    <span class="nav-text">
+      Login <br> Register
+    </span>
+  </a>
+</li>
+  {% endif %}
+</ul>
+</nav>
+
+  {% block content %}
+  {% endblock %}
+
+    <!-- JS -->
+
+    <script>
+    var input = document.getElementById('address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+  </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block js %}{% endblock %}
+
+  </body>
+</html>

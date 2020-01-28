@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Welcome{% endblock title %}
+{% block content %}
+
+<div class="container mb-1">
+  <div id="mapid" class="mb-2" style="width: 100%; height: 400px; z-index: 0"></div>
+
+  <div id="accordion">
+  <div class="card mb-2 card-success">
+
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Details
+        </button>
+      </h5>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="card mb-2">
+
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Images
+        </button>
+      </h5>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="img_grid container" style="display:grid; grid-template-columns: 1fr 1fr; align-items: center; justify-content: center; width: 690px; grid-gap: 5px">
+      {% for i in images %}
+      <a href="/media/{{ i.image }}">
+        <div class="img_cont" style="background-image:url('/media/{{ i.image }}'); width: 100%; height: 150px; background-repeat: no-repeat; background-size: cover;">
+        </div>
+      </a>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="card mb-2">
+
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Questions/Comments
+        </button>
+      </h5>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+
+      <form class="mb-1" action="{% url 'detail' accom.slug %}" method="post">
+        {% csrf_token %}
+        <textarea type="text" class="form-control my-1" name="message_box" placeholder="Type your message.."></textarea>
+        <button type="submit" class="btn btn-warning" href="#" role="button">Send</button>
+      </form>
+
+      <div class="detail_grid" style="display:grid; grid-template-columns:1fr;">
+        {% for i in messages %}
+        {% if i.accom.user == i.viewer %}
+        <div class="pl-1 mb-1 alert alert-dark" style="border-radius:5px; display: grid; grid-template-columns: 20fr 1fr;" role="alert">
+          <div class="pl-3">
+          <small><strong>{{i.viewer}}:</strong></small> {{i.message}}
+          </div>
+          <div>
+            {% if user == i.viewer or user == i.accom.user %}
+            <form class="" action="{% url 'delete_message' accom.slug %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="id_ref" value="{{ i.id }}"/>
+              <button class="btn btn-sm btn-default" type="submit" role="button">
+                <i class="fas fa-times"></i>
+              </button>
+            </form>
+          {% endif %}
+          </div>
+        </div>
+        {% else %}
+        <div class="pl-1 alert mb-1 alert-sm alert-light" role="alert" style="border-radius:5px; display: grid; grid-template-columns: 20fr 1fr;">
+          <div class="pl-3">
+            <small><strong>{{i.viewer}}:</strong></small> {{i.message}}
+          </div>
+          <div>
+            {% if user == i.viewer or user == i.accom.user %}
+            <form class="" action="{% url 'delete_message' accom.slug %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="id_ref" value="{{ i.id }}"/>
+
+              <button class="btn btn-sm btn-default" type="submit" role="button">
+                <i class="fas fa-times"></i>
+              </button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+
+  var mymap = L.map('mapid').setView([{{accom.lat}}, {{accom.lng}}], 13);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11'
+  }).addTo(mymap);
+
+  L.marker([{{accom.lat}}, {{accom.lng}}]).addTo(mymap)
+  .bindPopup("{{accom.address}}").openPopup();
+
+  var popup = L.popup();
+
+  function onMapClick(e) {
+    popup
+    .setLatLng(e.latlng)
+    .setContent("You clicked the map at " + e.latlng.toString())
+    .openOn(mymap);
+  }
+
+  mymap.on('click', onMapClick);
+
+</script>
+{% endblock content %}
