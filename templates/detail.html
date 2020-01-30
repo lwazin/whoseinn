@@ -90,12 +90,14 @@
       </h5>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="img_grid container">
+      {% if user.is_authenticated %}
       {% for i in images %}
       <a href="/media/{{ i.image }}">
         <div class="img_cont" style="background-image:url('/media/{{ i.image }}');">
         </div>
       </a>
       {% endfor %}
+      {% endif %}
       </div>
     </div>
   </div>
@@ -180,8 +182,10 @@
     id: 'mapbox/streets-v11'
   }).addTo(mymap);
 
+{% if user.is_authenticated %}
   L.marker([{{accom.lat}}, {{accom.lng}}]).addTo(mymap)
   .bindPopup("{{accom.address}}").openPopup();
+{% endif %}
 
   var popup = L.popup();
 

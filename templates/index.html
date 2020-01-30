@@ -64,6 +64,18 @@
              </a>
            </div>
 
+           {% if user.is_authenticated %}
+           {% if user == i.user %}
+
+           <div class="button-section">
+             <a class="btn btn-sm btn-danger" href="{% url 'delete' i.slug %}" role="button">
+              Delete
+             </a>
+           </div>
+
+           {% endif %}
+           {% endif %}
+
            <div class="paragraph">
              <label style='font-size: 13px; font-family: "Montserrat"; margin:0;  padding: 0;'>
               {{i.description}}
