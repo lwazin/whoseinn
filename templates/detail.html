@@ -19,11 +19,60 @@
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        <div class="article_grid" style="display:grid; grid-template-columns:1fr 2fr;">
-          <div style="background-color:#ffbb0b; height:200px; width:200px">
-
+        <div style="display:grid; grid-template-columns:2fr 1fr;width:auto">
+          <div style="padding-top:20px;">
+            <h1 style="text-align:center; font-size:30px; margin:0; padding:0">{{accom.title}}</h1>
+            <p style="text-align:center; font-size:12px;">
+              <i>{{accom.address}}</i>
+            </p>
+            <h3 style="text-align:center; font-size:15px; margin:0; padding:0; padding-bottom:20px">{{accom.description}}</h3>
           </div>
-          <div style="background-color:#ff8b0b; height:200px; width:200px">
+          <div style="padding-top:20px;">
+
+            <div style="display:grid; grid-template-columns:1fr 6fr">
+
+            <i class="fas fa-wifi"></i>
+            <p class="on_off" style="text-align:left; font-size:12px;">
+              <i>
+                {% if accom.wifi == True %}
+                WIFI is available.
+                {% else %}
+                WIFI is not available.
+                {% endif %}
+              </i>
+            </p>
+            <i class="fas fa-bolt"></i>
+            <p class="on_off" style="text-align:left; font-size:12px;">
+              <i>
+                {% if accom.electricity == True %}
+                Electricity is available.
+                {% else %}
+                Electricity is not available.
+                {% endif %}
+              </i>
+            </p>
+            <i class="fas fa-bus-alt"></i>
+            <p class="on_off" style="text-align:left; font-size:12px;">
+              <i>
+                {% if accom.shuttle == True %}
+                Shuttle service available.
+                {% else %}
+                Shuttle service not available.
+                {% endif %}
+              </i>
+            </p>
+            <i class="fas fa-chair"></i>
+            <p class="on_off" style="text-align:left; font-size:12px;">
+              <i>
+                {% if accom. == True %}
+                Accommodation is partially or fully furnished.
+                {% else %}
+                Accommodation is unfurnished.
+                {% endif %}
+              </i>
+            </p>
+
+            </div>
 
           </div>
         </div>
