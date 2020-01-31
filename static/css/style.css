@@ -4,6 +4,14 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url('https://fonts.googleapis.com/css?family=Teko:400,700&display=swap');
 
+.share_link_a{
+  text-decoration: none;
+  color: #e3e3e3;
+}
+
+.share_link_a:hover {
+  color: #ffbb0b;
+}
 
 .share{
   width:180px;
@@ -23,7 +31,7 @@
 .share_link:hover{
   transition: ease .5s;
   color:#ffbb0b;
-} 
+}
 
 .fa-2x {
   font-size: 2em; }
