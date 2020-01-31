@@ -3,7 +3,27 @@
 @import url("https://fonts.googleapis.com/css?family=Lilita+One");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url('https://fonts.googleapis.com/css?family=Teko:400,700&display=swap');
- 
+
+
+.share{
+  width:180px;
+  height: 120px;
+  position:relative;
+  top:-210px;
+  left:60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color:#e2e2e2
+}
+
+.share_link{
+  display:flex;
+  justify-content: center;
+}
+.share_link:hover{
+  transition: ease .5s;
+  color:#ffbb0b;
+} 
 
 .fa-2x {
   font-size: 2em; }
