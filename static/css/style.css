@@ -17,10 +17,10 @@
   width:180px;
   height: 120px;
   position:relative;
-  top:-210px;
+  top:-225px;
   left:60px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   color:#e2e2e2
 }
 
