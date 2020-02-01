@@ -23,6 +23,236 @@
 
   </head>
   <body>
+
+    <!-- Mobile -->
+
+    <nav class="navbar mobile navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'home' %}" style="color:#ffbb0b">
+
+        <i class="fas fa-users"></i>
+        <small style="color:#e3e3e3">
+          <strong>
+            WhoseInn
+          </strong>
+        </small>
+        <i class="fas fa-home"></i>
+
+      </a>
+      <button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="" style="color:#ffbb0b">
+          <i class="fas fa-bars"></i>
+        </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item active">
+            <a data-toggle="modal" data-target="#CreateModal" class="nav-link" style="color:#e3e3e3">
+              <strong>
+                New Post
+              </strong>
+            <span class="sr-only">(current)</span></a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">New Post </a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}" style="color:#e3e3e3">Catalogue</a>
+          </li>
+        <li>
+
+          <form method="post" action="{% url 'search' %}">
+            {% csrf_token %}
+
+              <input type="text" name='label_search' value='single_search' hidden>
+
+              <div class="input-group mb-2 mt-2">
+
+              <input type="search" name="search" class="form-control" placeholder="Search.." value="{{ search_term }}">
+
+              <div class="input-group-append">
+                <button class="btn btn-warning" type='submit'>
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <small style="color:#ffbb0b">
+            Detailed Search <i class="fas fa-sort-down"></i>
+          </small>
+        </a>
+
+        <div class="collapse" id="collapseExample">
+          <form method="post" action="{% url 'search' %}">
+            {% csrf_token %}
+
+            <input type="text" name='label_search' value='multiple_search' hidden>
+
+            <div class="input-group mb-1">
+        <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">
+        <i class="fas fa-globe-africa"></i>
+        </label>
+        </div>
+        <select name="province_search" class="custom-select">
+        <option value="" selected>
+        All
+        </option>
+        <option value="Eastern Cape">
+        Eastern Cape
+        </option>
+        <option value="Free State">
+        Free State
+        </option>
+        <option value="Gauteng">
+        Gauteng
+        </option>
+        <option value="KwaZulu-Natal">
+        KwaZulu-Natal
+        </option>
+        <option value="Limpopo">
+        Limpopo
+        </option>
+        <option value="Mpumalanga">
+        Mpumalanga
+        </option>
+        <option value="Northern Cape">
+        Northern Cape
+        </option>
+        <option value="North West">
+        North West
+        </option>
+        <option value="Western Cape">
+        Western Cape
+        </option>
+        </select>
+        </div>
+
+        <div class="input-group mb-1">
+        <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">
+        <i class="fas fa-venus-mars"></i>
+        </label>
+        </div>
+        <select name="gender_search" class="custom-select">
+        <option value="" selected>
+        All
+        </option>
+        <option value="Mixed">
+        Mixed
+        </option>
+        <option value="Female">
+        Female
+        </option>
+        <option value="Male">
+        Male
+        </option>
+        </select>
+
+
+        </div>
+
+        <div class="input-group mb-2">
+        <div class="input-group-prepend" title="">
+        <label class="input-group-text" for="inputGroupSelect01">
+        <i class="fas fa-box-open"></i>
+        </label>
+        </div>
+        <select name="room_search" class="custom-select">
+        <option value="" selected>
+        All
+        </option>
+        <option value="Single">
+        Single
+        </option>
+        <option value="Shared">
+        Shared
+        </option>
+        </select>
+
+        </div>
+
+        <div class="four_grid">
+
+        <button type="button" class="btn btn-sm btn-dark toggle mb-1 btn-block" data-toggle="button" title="Wifi" value='False' aria-pressed="false" onclick="if(getElementById('wifi_search').value == 'false'){getElementById('wifi_search').value = 'true'}else{getElementById('wifi_search').value = 'false'}">
+
+          <input type="hidden" name='wifi_search' class="form-control" id="wifi_search" value="false"/>
+
+          <i class="fas fa-wifi">
+          </i>
+
+        </button>
+        <button type="button" class="btn btn-sm btn-dark toggle mb-1 btn-block" data-toggle="button" title="Prepaid Electricity" aria-pressed="false" onclick="if(getElementById('electricity_search').value == 'false'){getElementById('electricity_search').value = 'true'}else{getElementById('electricity_search').value = 'false'}">
+
+          <input type="hidden" name='electricity_search' class="form-control" id="electricity_search" value="false"/>
+
+          <i class="fas fa-bolt">
+          </i>
+
+        </button>
+        <button type="button" class="btn btn-sm btn-dark toggle mb-1 btn-block" data-toggle="button"  title="Shuttle Service" aria-pressed="false" onclick="if(getElementById('shuttle_search').value == 'false'){getElementById('shuttle_search').value = 'true'}else{getElementById('shuttle_search').value = 'false'}">
+
+          <input type="hidden" name='shuttle_search' class="form-control" id="shuttle_search" value="false"/>
+
+          <i class="fas fa-bus-alt">
+          </i>
+
+        </button>
+        <button type="button" class="btn btn-sm btn-dark toggle mb-1 btn-block" data-toggle="button" title="Furnished" aria-pressed="false" onclick="if(getElementById('furnished_search').value == 'false'){getElementById('furnished_search').value = 'true'}else{getElementById('furnished_search').value = 'false'}">
+
+          <input type="hidden" name="furnished_search" class="form-control" id="furnished_search" value="false"/>
+
+          <i class="fas fa-chair">
+          </i>
+
+          <div class="input-group-append">
+            <button class="btn btn-warning btn-block" type='submit'>
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+            </form>
+          </div>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
+                <span class="nav-text" style="color:#e3e3e3">
+                  {{ user.name }} {{ user.surname }}
+                  <strong>
+                  <small style="color:crimson">
+                     - Logout
+                  </small>
+                </strong>
+                </span>
+              </a>
+              <form id='logout' action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" />
+              </form>
+            </li>
+            {% else %}
+
+              <li class="nav-item">
+                <a data-toggle="modal" data-target="#LoginModal" class="nav-link">
+                  <span class="nav-text" style="color:#e3e3e3">
+                    Login
+                  </span>
+                </a>
+              </li>
+
+            {% endif %}
+
+              </ul>
+
+
+      </div>
+    </nav>
+    
     <!-- Accounts -->
     <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
