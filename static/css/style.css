@@ -17,7 +17,7 @@
   width:180px;
   height: 120px;
   position:fixed;
-  top:-225px;
+  top:-100px;
   left:60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
