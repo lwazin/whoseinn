@@ -13,7 +13,7 @@
   color: #ffbb0b;
 }
 
-.share{
+/* .share{
   width:180px;
   position:relative;
   top:0;
@@ -21,7 +21,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   color:#e2e2e2
-}
+} */
 
 .share_link{
   display:flex;
