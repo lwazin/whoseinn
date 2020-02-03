@@ -16,8 +16,8 @@
 .share{
   width:180px;
   position:relative;
-  top:-107px;
-  left:60px;
+  top:0;
+  left:0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   color:#e2e2e2
