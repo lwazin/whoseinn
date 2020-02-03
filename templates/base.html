@@ -474,41 +474,9 @@
           INN
         </span>
       </div>
-
-      <li>
-        <div class="share">
-
-          <div class="share_link">
-            <a class="share_link_a" href='https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwhoseinn.com&quote=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home' target='_blank'>
-              <i class="fab fa-facebook" title="Help us share this on Facebook"></i>
-            </a>
-          </div>
-          <div class="share_link">
-            <a class="share_link_a" href='https://twitter.com/intent/tweet?source=http%3A%2F%2Fwhoseinn.com&text=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.:%20http%3A%2F%2Fwhoseinn.com' target='_blank'>
-              <i class="fab fa-twitter" style=""></i>
-            </a>
-          </div>
-          <div class="share_link">
-            <a class="share_link_a" href='http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwhoseinn.com&title=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.&summary=Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.&source=http%3A%2F%2Fwhoseinn.com' target='_blank'>
-              <i class="fab fa-linkedin" style=""></i>
-            </a>
-          </div>
-          <div class="share_link">
-            <a class="share_link_a" href='mailto:?subject=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.&body=Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.:%20http%3A%2F%2Fwhoseinn.com' target='_blank'>
-              <i class="fas fa-envelope" style=""></i>
-            </a>
-          </div>
-        </div>
-
-          <p class="share_message">
-            <small>
-              Hello World
-            </small>
-          </p>
-      </li>
     </li>
     {% if user.is_authenticated %}
-    <li class="has-subnav move_up">
+    <li class="has-subnav">
       <a data-toggle="modal" data-target="#CreateModal">
         <i class="fa fa-plus fa-2x shake"></i>
         <span class="nav-text">
@@ -517,7 +485,7 @@
       </a>
     </li>
     {% endif %}
-    <li class="move_up">
+    <li>
       <a href="{% url 'home' %}">
         <i class="fas fa-newspaper unknown fa-2x"></i>
         <span class="nav-text">
@@ -525,7 +493,7 @@
         </span>
       </a>
     </li>
-    <li id='search_drop' class="move_up">
+    <li id='search_drop'>
 
         <a data-toggle="collapse" class='collapsed' id="search_expand" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="">
 
@@ -692,6 +660,32 @@
 
       </div>
 
+    </li>
+    <li>
+      <div class="share">
+
+        <div class="share_link">
+        <a class="share_link_a" href='https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwhoseinn.com&quote=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home' target='_blank'>
+          <i class="fab fa-facebook" title="Help us share this on Facebook"></i>
+        </a>
+        </div>
+        <div class="share_link">
+          <a class="share_link_a" href='https://twitter.com/intent/tweet?source=http%3A%2F%2Fwhoseinn.com&text=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.:%20http%3A%2F%2Fwhoseinn.com' target='_blank'>
+          <i class="fab fa-twitter" title="Help us share this on Twitter"></i>
+        </a>
+        </div>
+        <div class="share_link">
+          <a class="share_link_a" href='http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwhoseinn.com&title=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.&summary=Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.&source=http%3A%2F%2Fwhoseinn.com' target='_blank'>
+          <i class="fab fa-linkedin" title="Help us share this on LinkedIn"></i>
+        </a>
+        </div>
+        <div class="share_link">
+          <a class="share_link_a" href='mailto:?subject=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.&body=Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home.:%20http%3A%2F%2Fwhoseinn.com' target='_blank'>
+          <i class="fas fa-envelope" title="Help us share this via Email"></i>
+        </a>
+        </div>
+
+      </div>
     </li>
 
   </ul>
