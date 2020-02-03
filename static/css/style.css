@@ -22,20 +22,19 @@
   left:59px;
 }
 
-.spread_the_love{
-  color: #ffbb0b;
-}
-
 .move_up{
   position: relative;
   top: -80px;
 }
 
+.spread_the_love{
+  color: #ffbb0b;
+}
+
 .share{
   width:180px;
-  height: 120px;
   position:relative;
-  top:-100px;
+  top:-100px;;
   left:60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -555,6 +554,11 @@ h2 a {
   color: #ff8b0b;
   text-decoration: none;
 }
+.collap button:visited{
+  color: #ff8b0b;
+  text-decoration: none;
+}
+.collap button:active{
 .canv{
   background-color: transparent;
   border: 0px
