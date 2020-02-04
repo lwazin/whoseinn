@@ -476,7 +476,7 @@
       </div>
     </li>
     <li>
-      <div class="share">
+      <div class="share" style='top:90px'>
 
         <div class="share_link">
           <a class="share_link_a" href='https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwhoseinn.com&quote=WhoseInn%20Student%20Accommodation%20-%20Link%20up%20with%20private%20accommodation%20providers%20without%20having%20to%20leave%20home' target='_blank'>
@@ -511,8 +511,8 @@
 
 
     {% if user.is_authenticated %}
-    <li class="has-subnav move_up">
-      <a data-toggle="modal" data-target="#CreateModal">
+    <li class="has-subnav move_up" style='top:-60px'>
+	    <a data-toggle="modal" data-target="#CreateModal">
         <i class="fa fa-plus fa-2x shake"></i>
         <span class="nav-text">
           New Accom
@@ -520,7 +520,7 @@
       </a>
     </li>
     {% endif %}
-    <li class="move_up">
+    <li class="move_up" style='top:-60px'>
       <a href="{% url 'home' %}">
         <i class="fas fa-newspaper unknown fa-2x"></i>
         <span class="nav-text">
@@ -532,7 +532,7 @@
 
 
 
-    <li id='search_drop' class="move_up">
+    <li id='search_drop' class="move_up" style='top:-60px'>
 
         <a data-toggle="collapse" class='collapsed' id="search_expand" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="">
 

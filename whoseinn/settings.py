@@ -10,17 +10,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'go%80172h_@o0$jd994y5$@u5ci)iykfm!f6bbwwiy4i11d$8*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 ALLOWED_HOSTS = ['109.74.194.128', 'www.whoseinn.com', 'whoseinn.com']
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-EMAIL_USE_TSL = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'telluwhoseinn@gmail.com'
-EMAIL_HOST_PASSWORD = '@Clubpengu1'
-EMAIL_PORT = 587
+#EMAIL_USE_TSL = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'telluwhoseinn@gmail.com'
+#EMAIL_HOST_PASSWORD = '@Clubpengu1'
+#EMAIL_PORT = 587
 
 
 # Application definition
