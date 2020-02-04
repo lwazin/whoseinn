@@ -1,5 +1,5 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300');
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 @import url("https://fonts.googleapis.com/css?family=Lilita+One");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url('https://fonts.googleapis.com/css?family=Teko:400,700&display=swap');
@@ -13,9 +13,25 @@
   left:59px;
 }
 
+.img_grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  width: 690px;
+  grid-gap: 5px;
+  margin-top: 5px;
+}
+.img_cont{
+  width: 100%;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .move_up{
   position: relative;
-  top: -60px;
+  top: -70px;
 }
 
 .spread_the_love{
@@ -440,6 +456,15 @@ h2 a {
   .mobile {
     display: block;
     background-color: #212121; }
+    .img_grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-content: center;
+      width: 690px;
+      grid-gap: 5px;
+      margin-top: 5px;
+    }
   .card_grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -558,20 +583,4 @@ h2 a {
 .canv{
   background-color: transparent;
   border: 0px
-}
-
-.img_grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-content: center;
-  width: 690px;
-  grid-gap: 5px;
-  margin-top: 5px;
-}
-.img_cont{
-  width: 100%;
-  height: 150px;
-  background-repeat: no-repeat;
-  background-size: cover;
 }

@@ -90,14 +90,14 @@
       </h5>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="img_grid container">
-      {% if user.is_authenticated %}
+
       {% for i in images %}
       <a href="/media/{{ i.image }}">
         <div class="img_cont" style="background-image:url('/media/{{ i.image }}');">
         </div>
       </a>
       {% endfor %}
-      {% endif %}
+
       </div>
     </div>
   </div>
