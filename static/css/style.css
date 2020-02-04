@@ -5,17 +5,17 @@
 @import url('https://fonts.googleapis.com/css?family=Teko:400,700&display=swap');
 
 .share_message{
-  width: 190px;;
+  width: 190px;
   text-align: center;
   color: #e3e3e3;
   position:relative;
-  top:-92px;;
+  top:-92px;
   left:59px;
 }
 
 .move_up{
   position: relative;
-  top: -80px;
+  top: -70px;
 }
 
 .spread_the_love{
@@ -35,7 +35,7 @@
   width:180px;
   height: auto;
   position:fixed;
-  top:-1px;
+  top:10px;
   left:60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
