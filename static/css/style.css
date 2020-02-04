@@ -4,6 +4,24 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url('https://fonts.googleapis.com/css?family=Teko:400,700&display=swap');
 
+.share_message{
+  width: 190px;;
+  text-align: center;
+  color: #e3e3e3;
+  position:relative;
+  top:-92px;;
+  left:59px;
+}
+
+.move_up{
+  position: relative;
+  top: -80px;
+}
+
+.spread_the_love{
+  color: #ffbb0b;
+}
+
 .share_link_a{
   text-decoration: none;
   color: #e3e3e3;
