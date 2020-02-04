@@ -1,5 +1,5 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300');
 @import url("https://fonts.googleapis.com/css?family=Lilita+One");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url('https://fonts.googleapis.com/css?family=Teko:400,700&display=swap');
@@ -19,7 +19,7 @@
 }
 
 .spread_the_love{
-  color: #ff0000;
+  color: #ffbb0b;
 }
 
 .share_link_a{
